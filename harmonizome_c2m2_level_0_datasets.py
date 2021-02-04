@@ -147,19 +147,19 @@ def convert_harmonizome_datasets_to_c2m2():
   selected_downloads = [
     'gene_attribute_matrix.txt.gz',
     'gene_attribute_edges.txt.gz',
-    'gene_set_library_crisp.txt.gz',
-    'gene_set_library_up_crisp.txt.gz',
-    'gene_set_library_dn_crisp.txt.gz',
-    'attribute_set_library_crisp.txt.gz',
-    'attribute_set_library_up_crisp.txt.gz',
-    'attribute_set_library_dn_crisp.txt.gz',
+    'gene_set_library_crisp.gmt.gz',
+    'gene_set_library_up_crisp.gmt.gz',
+    'gene_set_library_dn_crisp.gmt.gz',
+    'attribute_set_library_crisp.gmt.gz',
+    'attribute_set_library_up_crisp.gmt.gz',
+    'attribute_set_library_dn_crisp.gmt.gz',
     'gene_similarity_matrix_cosine.txt.gz',
     'attribute_similarity_matrix_cosine.txt.gz',
     'gene_list_terms.txt.gz',
     'attribute_list_entries.txt.gz'
       ]
 
-  for dataset, path in selected_datasets:
+  for dataset, path in tqdm(selected_datasets):
       for downloadable in selected_downloads:
         url = 'https://maayanlab.cloud/static/hdfs/harmonizome/data/%s/%s' %\
           (path, downloadable)
@@ -181,7 +181,7 @@ def convert_harmonizome_datasets_to_c2m2():
           
         f = c2m2_level_0.file(
         id_namespace=ns.id,
-        id=path+downloadable,
+        id=path+'_'+downloadable,
         filename=downloadable,
         size_in_bytes=filesize,
         persistent_id='https://maayanlab.cloud/static/hdfs/harmonizome/data/%s/%s' % (path,downloadable),
