@@ -11,9 +11,10 @@ def convert_harmonizome_genes_to_c2m2():
   ''' Construct a set of c2m2 objects corresponding to datasets available from Harmonizome.
   '''
   ns = c2m2_level_0.id_namespace(
-    id='https://maayanlab.cloud/Harmonizome/',
-    name='Harmonizome',
-    description='Harmonizome is a collection of information about genes and proteins from datasets provided by various online resources distilled into attribute tables that define significant associations between genes and attributes, where attributes could be genes, proteins, cell lines, tissues, experimental perturbations, diseases, phenotypes, or drugs depending on the dataset.',
+    id='http://www.druggablegenome.net/',
+    abbreviation='IDG',
+    name='IDG: Illuminating the Druggable Genome',
+    description='The goal of IDG is to improve our understanding of understudied proteins from the three most commonly drug-targeted protein families: G-protein coupled receptors, ion channels, and protein kinases.',
   )
   yield ns
 
@@ -34,7 +35,7 @@ def convert_harmonizome_genes_to_c2m2():
         md5_hash = md5.hexdigest()
           
         f = c2m2_level_0.file(
-        id_namespace=ns.id,
+        id_namespace=ns.abbreviation,
         id=gene,
         filename='%s_associations.tsv' % gene,
         size_in_bytes=filesize,
